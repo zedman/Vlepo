@@ -3,7 +3,7 @@ Open source Java software to visualize eye tracking coordinates from 'The Eye Tr
 
 ##Features
 * Interprets data from 'The Eye Tribe' eye tracking hardware.
-* Replicates screen (therefore dual monitors recommended) with the following visualisation overlayed
+* Replicates screen (therefore dual monitors recommended) with the following visualisations overlaid
  * Gaze plot
  * Heatmap (Heatmaps are generally for the aggregation of tracking data, but the visualisation is there nonetheless)
  
