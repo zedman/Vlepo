@@ -20,8 +20,8 @@ public class StatPanel extends JPanel {
     private static Point[] heatGazeBuffer = new Point[24];
     private static int heatGazeBufferHead = 0;
 
-    private static Point[] gazeBuffer = new Point[3];
-    private static int[] gazeIntensityBuffer = new int[3];
+    private static Point[] gazeBuffer = new Point[4];
+    private static int[] gazeIntensityBuffer = new int[4];
     private static int gazeBufferHead = 0;
 
     private static boolean HEATMAP = false;
@@ -103,6 +103,7 @@ public class StatPanel extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
+        g2d.setFont(new Font("Arial", Font.PLAIN, 12));
 
         if (Math.abs(iHeight-winHeight) < 200 && Math.abs(iWidth-winWidth) < 200)
         {
@@ -203,21 +204,25 @@ public class StatPanel extends JPanel {
 
         c = 0;
 
-        g2d.setColor(new Color(0f, 0f, 1f, .5f));
+
 
         Point prevPoint = new Point(-512,-512);
-        for(int k = gazeBufferHead; c < gazeBuffer.length;  k = (k+1)%(gazeBuffer.length))
+        int k = 0;
+        for(k = (k+1)%(gazeBuffer.length); c < gazeBuffer.length;  k = (k+1)%(gazeBuffer.length))
         {
             if (gazeBuffer[k] != null)
             {
-                int gazeMarkSize = Math.min((gazeIntensityBuffer[k] *3), 128);
+                g2d.setColor(new Color(0f, 0f, 1f, .5f));
+                int gazeMarkSize = Math.max(16,Math.min((gazeIntensityBuffer[k] *3), 128));
 
-                if (prevPoint.x >= 0 && prevPoint.y >= 0)
+                if (prevPoint.x >= 0 && prevPoint.y >= 0 && gazeBuffer[k].x >= 0 && gazeBuffer[k].y >= 0)
                 {
                     g2d.drawLine(prevPoint.x,prevPoint.y,gazeBuffer[k].x,gazeBuffer[k].y);
                 }
 
                 g2d.fillOval(gazeBuffer[k].x-(gazeMarkSize/2),gazeBuffer[k].y-(gazeMarkSize/2),(gazeMarkSize),(gazeMarkSize));
+                g2d.setColor(new Color(1f, 1f, 1f, 1f));
+                g2d.drawString(Integer.toString(c+1),gazeBuffer[k].x,gazeBuffer[k].y);
                 prevPoint = gazeBuffer[k];
             }
 

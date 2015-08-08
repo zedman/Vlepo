@@ -14,7 +14,7 @@ Open source Java software to visualize eye tracking coordinates from 'The Eye Tr
 ##To-do
 * Short term
  * Comment existing code.
- * Add numbers to gaze plot points
+ * Add numbers to gaze plot points (In progress)
 * Long term
  * Recording capabilities
  * Support other eye tracking hardware 
