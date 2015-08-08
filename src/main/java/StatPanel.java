@@ -235,25 +235,3 @@ public class StatPanel extends JPanel {
 
 
 }
-
-/*
-*         Point prevPoint = new Point(-512,-512);
-        for(int k = gazeBufferHead; k < gazeBuffer.length;  k = (k+1)%(gazeBuffer.length))
-        {
-            if (gazeBuffer[k] != null)
-            {
-                int gazeMarkSize = Math.min((gazeIntensityBuffer[k] * 2), 128);
-
-                if (prevPoint.x != -512 || prevPoint.y != -512)
-                {
-                    g2d.setColor(new Color(0f, 0f, 0f, .5f));
-                    g2d.drawLine(prevPoint.x,prevPoint.y,gazeBuffer[gazeBufferHead].x,gazeBuffer[gazeBufferHead].y);
-                }
-
-
-                g2d.setColor(new Color(0f, 0f, 1f, .5f));
-                g2d.fillOval(gazeBuffer[gazeBufferHead].x-(gazeMarkSize/2),gazeBuffer[gazeBufferHead].y-(gazeMarkSize/2),(gazeMarkSize/2),(gazeMarkSize/2));
-                prevPoint = gazeBuffer[k];
-            }
-        }
-* */
