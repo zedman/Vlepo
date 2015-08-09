@@ -207,13 +207,14 @@ public class StatPanel extends JPanel {
 
 
         Point prevPoint = new Point(-512,-512);
-        int k = 0;
+        int k = gazeBufferHead;
         for(k = (k+1)%(gazeBuffer.length); c < gazeBuffer.length;  k = (k+1)%(gazeBuffer.length))
         {
             if (gazeBuffer[k] != null)
             {
+                System.out.println(k);
                 g2d.setColor(new Color(0f, 0f, 1f, .5f));
-                int gazeMarkSize = Math.max(16,Math.min((gazeIntensityBuffer[k] *3), 128));
+                int gazeMarkSize = getMarkSize(gazeIntensityBuffer[k]);
 
                 if (prevPoint.x >= 0 && prevPoint.y >= 0 && gazeBuffer[k].x >= 0 && gazeBuffer[k].y >= 0)
                 {
@@ -231,6 +232,12 @@ public class StatPanel extends JPanel {
             c++;
         }
 
+        System.out.println("------");
+
+    }
+
+    private static int getMarkSize(int intensity){
+        return Math.max(24,Math.min((intensity*3), 100));
     }
 
     private AlphaComposite makeComposite(float alpha) {
